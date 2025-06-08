@@ -14,7 +14,9 @@ onMounted(() => {
 <template>
   <ul class="category-list" v-if="categories">
     <li class="category-list__item" v-for="item in categories" :key="item.id">
-      <RouterLink :to="`/main/${item.alias}`">{{ item.name }}</RouterLink>
+      <RouterLink active-class="active-link" :to="`/main/${item.alias}`">{{
+        item.name
+      }}</RouterLink>
     </li>
     <li class="category-list__item">
       <ButtonIcon @click="categoriesStore.createCategory">
@@ -42,5 +44,11 @@ onMounted(() => {
       }
     }
   }
+}
+
+.active-link {
+  font-size: 24px;
+  font-weight: 700;
+  transition: all 0.5s;
 }
 </style>

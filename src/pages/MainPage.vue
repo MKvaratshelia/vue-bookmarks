@@ -25,7 +25,7 @@ import ProfileAvatar from '../component/ProfileAvatar.vue';
 .nav {
   display: flex;
   flex-direction: column;
-  min-width: 400px;
+  flex-basis: 320px;
   gap: 30px;
 }
 </style>

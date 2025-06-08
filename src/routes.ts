@@ -1,9 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import TestComponent from './component/TestComponent.vue';
 
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'NotFound',
+      component: () => import('./pages/NotFoundPage.vue'),
+    },
+
     {
       path: '/',
       component: () => import('./pages/AuthPage.vue'),
@@ -14,8 +19,13 @@ export const router = createRouter({
       children: [
         {
           path: '',
-          component: TestComponent,
+          component: () => import('./pages/IndexPage.vue'),
           name: 'main',
+        },
+
+        {
+          path: ':alias',
+          component: () => import('./pages/CategoryPage.vue'),
         },
       ],
     },

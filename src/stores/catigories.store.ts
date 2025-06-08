@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { v4 as uuidv4 } from 'uuid';
 
 import { ref } from 'vue';
 import { api, API_ROUTES } from '@/api';
@@ -15,11 +16,19 @@ export const useCategoryStore = defineStore('categories', () => {
   async function createCategory() {
     const { data } = await api.post<Category>(API_ROUTES.categories, {
       name: 'Новая категория',
-      alias: 'new',
+      alias: uuidv4(),
     });
 
     categories.value.push(data);
   }
 
-  return { categories, fetchCategories, createCategory };
+  const getCategoryByAlias = (alias: string | string[]): Category | undefined => {
+    if (typeof alias == 'string') {
+      return categories.value.find((i) => i.alias === alias);
+    } else {
+      return;
+    }
+  };
+
+  return { categories, fetchCategories, createCategory, getCategoryByAlias };
 });

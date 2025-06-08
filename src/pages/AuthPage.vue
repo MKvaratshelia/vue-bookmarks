@@ -1,20 +1,37 @@
 <script setup lang="ts">
 import ButtonText from '@/component/ButtonText.vue';
-import { useRouter } from 'vue-router';
+import InputString from '@/component/InputString.vue';
+import { useAuthStore } from '@/stores/auth.store';
+import { ref } from 'vue';
 
-const router = useRouter();
+const formData = ref<{ email?: string; password?: string }>({});
+const authStore = useAuthStore();
 
-const goTomain = () => {
-  router.push({
-    name: 'main',
-  });
+const onSubmit = (e: Event) => {
+  e.preventDefault();
+  if (!formData.value.email || !formData.value.password) {
+    return;
+  }
+  authStore.login(formData.value.email, formData.value.password);
+
+  formData.value = {};
 };
 </script>
 <template>
   <div class="auth-page">
-    <div class="auth-page__form">
+    <div class="auth-page__wrapper">
       <h1 class="auth-page__title">Bookmarkly</h1>
-      <ButtonText @click="goTomain">Вход</ButtonText>
+      <form @submit="onSubmit" class="auth-page__form">
+        <InputString name="email" placeholder="Email" v-model="formData.email" />
+        <InputString
+          name="password"
+          placeholder="Пароль"
+          type="password"
+          v-model="formData.password"
+        />
+        <ButtonText type="submit">Вход</ButtonText>
+        {{ authStore.token }}
+      </form>
     </div>
   </div>
 </template>
@@ -26,7 +43,7 @@ const goTomain = () => {
 
   min-height: 100vh;
 
-  &__form {
+  &__wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,6 +55,13 @@ const goTomain = () => {
     font-size: 52px;
     font-weight: 700;
     color: var(--color-fg);
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
   }
 }
 </style>
