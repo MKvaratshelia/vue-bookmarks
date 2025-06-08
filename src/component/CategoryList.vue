@@ -4,12 +4,23 @@ import { storeToRefs } from 'pinia';
 import { useCategoryStore } from '../stores/catigories.store';
 import ButtonIcon from './ButtonIcon.vue';
 import IconPlus from '@/icons/IconPlus.vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/auth.store';
 const categoriesStore = useCategoryStore();
 const { categories } = storeToRefs(categoriesStore);
+const router = useRouter();
+const authStore = useAuthStore();
 
 onMounted(() => {
   categoriesStore.fetchCategories();
 });
+
+const logout = () => {
+  authStore.clearToken();
+  router.push({
+    name: 'auth',
+  });
+};
 </script>
 <template>
   <ul class="category-list" v-if="categories">
@@ -22,6 +33,9 @@ onMounted(() => {
       <ButtonIcon @click="categoriesStore.createCategory">
         <IconPlus />
       </ButtonIcon>
+    </li>
+    <li class="category-list__item">
+      <a class="" href="#" @click="logout">Выход</a>
     </li>
   </ul>
 </template>

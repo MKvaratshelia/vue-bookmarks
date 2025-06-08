@@ -2,19 +2,19 @@ import { defineStore } from 'pinia';
 import { v4 as uuidv4 } from 'uuid';
 
 import { ref } from 'vue';
-import { api, API_ROUTES } from '@/api';
+import { client, API_ROUTES } from '@/api';
 import type { Category } from '@/interfaces/category.interface';
 
 export const useCategoryStore = defineStore('categories', () => {
   const categories = ref<Category[]>([]);
 
   async function fetchCategories() {
-    const { data } = await api.get<Category[]>(API_ROUTES.categories);
+    const { data } = await client().get<Category[]>(API_ROUTES.categories);
     categories.value = data;
   }
 
   async function createCategory() {
-    const { data } = await api.post<Category>(API_ROUTES.categories, {
+    const { data } = await client().post<Category>(API_ROUTES.categories, {
       name: 'Новая категория',
       alias: uuidv4(),
     });
