@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import CategoryHeader from '@/component/CategoryHeader.vue';
 import type { Category } from '@/interfaces/category.interface';
 import { usebookmarkStore } from '@/stores/bookmark.store';
 import { useCategoryStore } from '@/stores/catigories.store';
@@ -31,6 +32,8 @@ watch(
   //   { immediate: true },
 );
 </script>
-<template>category {{ category?.name }}</template>
+<template>
+  <CategoryHeader v-if="category" :category="category" />
+</template>
 
 <style lang="scss" scoped></style>

@@ -9,7 +9,7 @@ import ProfileAvatar from '../component/ProfileAvatar.vue';
       <ProfileAvatar />
       <CategoryList />
     </nav>
-    <main><RouterView /></main>
+    <main class="main"><RouterView /></main>
   </div>
 </template>
 
@@ -27,5 +27,9 @@ import ProfileAvatar from '../component/ProfileAvatar.vue';
   flex-direction: column;
   flex-basis: 320px;
   gap: 30px;
+}
+
+.main {
+  width: 100%;
 }
 </style>
