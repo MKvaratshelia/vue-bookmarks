@@ -13,7 +13,7 @@ onMounted(() => {
 <template>
   <p v-if="!profile">...загрузка</p>
   <div v-if="profile" class="profile-avatar">
-    <img class="profile-avatar__image" src="../assets/Avatar.png" alt="фото пользователя" />
+    <img class="profile-avatar__image" src="/Avatar.png" alt="фото пользователя" />
     <div class="profile-avatar__name">
       Привет, <strong>{{ profile.name }}!</strong>
     </div>

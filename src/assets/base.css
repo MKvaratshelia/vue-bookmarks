@@ -1,6 +1,8 @@
 :root {
   --color-bg: #ffffff;
+  --color-bg-hover: #f7f7f7;
   --color-fg: #1c1c1c;
+  --color-fg-hover: #2d2d2d;
   --color-inactive: rgba(28, 28, 28, 0.4);
 }
 
