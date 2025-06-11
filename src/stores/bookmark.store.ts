@@ -20,5 +20,14 @@ export const usebookmarkStore = defineStore('bookmark', () => {
     await client().delete(`${API_ROUTES.bookmarks.delete(id)}`);
     fetchBookmarks(categoryId, activeSort.value);
   }
-  return { bookmarks, fetchBookmarks, deleteBookmark, activeSort };
+
+  async function addBookmark(category_id: number, url: string) {
+    const { data } = await client().post<Bookmark>(`${API_ROUTES.bookmarks.add}`, {
+      category_id,
+      url,
+    });
+
+    bookmarks.value.push(data);
+  }
+  return { bookmarks, fetchBookmarks, deleteBookmark, activeSort, addBookmark };
 });

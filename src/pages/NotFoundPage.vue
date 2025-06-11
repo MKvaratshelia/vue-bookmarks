@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ButtonText from '@/component/ButtonText.vue';
+import ButtonText from '@/components/ButtonText.vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();

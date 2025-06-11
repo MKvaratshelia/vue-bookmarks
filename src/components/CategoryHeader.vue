@@ -51,7 +51,13 @@ watch(
   <div class="category-header">
     <h1 v-if="!isEdit" class="category-header__title">{{ category.name }}</h1>
     <form @submit.prevent="onSubmit" v-else class="category-header__form">
-      <InputString required placeholder="категория" type="text" v-model="newCategoryName" />
+      <InputString
+        is-focused
+        required
+        placeholder="категория"
+        type="text"
+        v-model="newCategoryName"
+      />
       <ButtonIcon type="submit">
         <IconOk />
       </ButtonIcon>

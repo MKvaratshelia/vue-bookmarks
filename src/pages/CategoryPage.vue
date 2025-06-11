@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import BookmarkCard from '@/component/BookmarkCard.vue';
-import BookmarkSort from '@/component/BookmarkSort.vue';
-import CategoryHeader from '@/component/CategoryHeader.vue';
+import BookmarkAdd from '@/components/BookmarkAdd.vue';
+import BookmarkCard from '@/components/BookmarkCard.vue';
+import BookmarkSort from '@/components/BookmarkSort.vue';
+import CategoryHeader from '@/components/CategoryHeader.vue';
 import type { Category } from '@/interfaces/category.interface';
 import { usebookmarkStore } from '@/stores/bookmark.store';
 import { useCategoryStore } from '@/stores/catigories.store';
@@ -46,6 +47,7 @@ const sortBookmarks = (option: string) => {
   <BookmarkSort @sort="sortBookmarks" :option="bookmarkStore.activeSort" />
   <div class="category__list">
     <BookmarkCard v-for="item in bookmarkStore.bookmarks" :key="item.id" v-bind="item" />
+    <BookmarkAdd v-if="category" :category_id="category.id" />
   </div>
 </template>
 

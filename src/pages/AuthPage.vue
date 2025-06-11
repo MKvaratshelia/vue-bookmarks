@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import ButtonText from '@/component/ButtonText.vue';
-import InputString from '@/component/InputString.vue';
+import ButtonText from '@/components/ButtonText.vue';
+import InputString from '@/components/InputString.vue';
 import { useAuthStore } from '@/stores/auth.store';
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CategoryList from '../component/CategoryList.vue';
-import ProfileAvatar from '../component/ProfileAvatar.vue';
+import CategoryList from '../components/CategoryList.vue';
+import ProfileAvatar from '../components/ProfileAvatar.vue';
 </script>
 
 <template>

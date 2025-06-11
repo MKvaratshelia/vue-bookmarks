@@ -2,7 +2,9 @@
 const { size = 32 } = defineProps<{ size?: number }>();
 </script>
 <template>
-  <button class="button-icon" :style="{ width: `${size}px`, height: `${size}px` }"><slot /></button>
+  <button class="button-icon" :style="{ minWidth: `${size}px`, height: `${size}px` }">
+    <slot />
+  </button>
 </template>
 
 <style lang="scss" scoped>
@@ -13,5 +15,9 @@ const { size = 32 } = defineProps<{ size?: number }>();
   border-radius: 50%;
   background-color: var(--color-fg);
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+  }
 }
 </style>
